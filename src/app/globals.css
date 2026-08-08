@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Favori Fresh — Tasarım Token'ları
+  Renkler "R G B" formatında (Tailwind <alpha-value> ile uyumlu).
+*/
+@layer base {
+  :root {
+    /* Marka çekirdeği */
+    --c-brand-green: 34 139 84; /* Favori yeşili */
+    --c-botanic: 20 54 38; /* koyu botanik yeşil */
+    --c-cream: 247 244 236; /* kırık beyaz / doğal krem */
+    --c-ink: 38 42 40; /* kömür grisi metin */
+
+    /* Ürün vurgu renkleri */
+    --c-lemon: 224 188 44;
+    --c-mandarin: 232 133 45;
+    --c-orange: 236 116 28;
+    --c-pomegranate: 168 32 45;
+    --c-mulberry: 94 42 92;
+    --c-grapefruit: 226 96 104;
+
+    /* Aktif vurgu (JS ile güncellenir; varsayılan marka yeşili) */
+    --c-accent: 34 139 84;
+
+    /* Yüzey */
+    --surface: var(--c-cream);
+    --on-surface: var(--c-ink);
+
+    color-scheme: light;
+  }
+
+  * {
+    border-color: rgb(var(--c-ink) / 0.1);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: rgb(var(--surface));
+    color: rgb(var(--on-surface));
+    font-family: var(--font-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Erişilebilir, görünür focus */
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 2px solid rgb(var(--c-accent));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: rgb(var(--c-accent) / 0.25);
+  }
+}
+
+@layer components {
+  .container-fluid {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Bölüm etiketi (kicker) */
+  .kicker {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em];
+  }
+}
+
+/*
+  Canlı arka plan (living wallpaper) — yumuşak, yavaş sürüklenen ışık lekeleri.
+  Kontrollü ve abartısız; hareket azaltmada global kural ile otomatik donar.
+*/
+@keyframes ff-drift-a {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(7%, -5%, 0) scale(1.18); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes ff-drift-b {
+  0% { transform: translate3d(0, 0, 0) scale(1.1); }
+  50% { transform: translate3d(-6%, 6%, 0) scale(0.92); }
+  100% { transform: translate3d(0, 0, 0) scale(1.1); }
+}
+@keyframes ff-drift-c {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(5%, 8%, 0) scale(1.12); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes ff-aurora-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Lenis smooth scroll — html'e sınıf eklenince devreye girer */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Hareket azaltma: tüm kritik animasyonları sakinleştir */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
