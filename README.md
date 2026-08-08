@@ -69,6 +69,27 @@ değiştir (UI ve sözleşme aynı kalır).
 - Three.js yalnızca gerektiğinde (dynamic import, `ssr:false`) yüklenir.
 - Fontlar self-host (next/font, latin-ext alt kümesi — tam Türkçe).
 
+## Yayınlama — GitHub Pages (paylaşılabilir link)
+
+Proje **statik export** (`output: "export"`) ile yapılandırıldı ve `.github/workflows/deploy.yml`
+otomatik olarak GitHub Pages'e yayınlar. Adımlar:
+
+1. GitHub'da **public** bir repo oluştur (Pages ücretsiz hesapta public repo ister).
+2. Yerelde bağla ve gönder:
+   ```bash
+   git remote add origin https://github.com/<kullanici>/<repo>.git
+   git push -u origin main
+   ```
+3. Repo → **Settings → Pages → Build and deployment → Source: GitHub Actions** seç.
+4. Her `main` push'unda site otomatik derlenir ve şu adreste yayınlanır:
+   `https://<kullanici>.github.io/<repo>/`
+
+Notlar:
+- Alt yol (`/repo`) deploy akışı tarafından otomatik ayarlanır; kod değişikliği gerekmez.
+- Statik dağıtımda sunucu olmadığından formlar demo modunda çalışır (istemci doğrulaması +
+  başarı ekranı). Gerçek gönderim için `NEXT_PUBLIC_FORM_ENDPOINT` (ör. Formspree) tanımlanabilir.
+- Node.js destekli tam sürüm (form API'si ile) için Vercel gibi bir platform tercih edilebilir.
+
 ## Notlar
 
 - Doğrulanmamış "Türkiye'de tek" / sağlık / sertifika iddiaları KULLANILMAZ;
