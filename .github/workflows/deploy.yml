@@ -39,7 +39,10 @@ jobs:
             echo "NEXT_PUBLIC_BASE_PATH=/${REPO}" >> "$GITHUB_ENV"
           fi
 
-      - run: npm ci
+      # npm ci yerine npm install: package-lock.json Windows'ta üretildiğinde
+      # bazı platforma özgü opsiyonel bağımlılıklar (@emnapi/*) kilide yazılmaz;
+      # npm install kilidi temel alıp Linux'ta eksikleri tamamlar.
+      - run: npm install --no-audit --no-fund
 
       - run: npm run build
 
