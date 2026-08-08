@@ -12,8 +12,10 @@ const nextConfig = {
   // Alt sayfaların /rota/ -> index.html olarak çözülmesi (Pages uyumu).
   trailingSlash: true,
   images: {
-    // Statik export'ta görsel optimizasyon sunucusu yoktur.
-    unoptimized: true,
+    // Statik export'ta optimizasyon sunucusu yoktur; özel yükleyici
+    // basePath'i src'ye ekler (GitHub Pages alt yolu için gerekli).
+    loader: "custom",
+    loaderFile: "./image-loader.js",
   },
   reactStrictMode: true,
   transpilePackages: ["three"],
