@@ -89,7 +89,7 @@ export default function ProductsPage() {
       {/* Marka banner'ı — dalından bardağa */}
       <section aria-label="Dalından bardağa, sadece meyvenin özü" className="bg-brand-botanic">
         <Image
-          src="/img/banner-genis.png"
+          src="/img/banner-genis.webp"
           alt="Dalından bardağa, sadece meyvenin özü — Doğallık Herkesin Hakkı"
           width={3240}
           height={1080}

@@ -1,6 +1,7 @@
 import { AnimatedBackdrop } from "@/components/ui/AnimatedBackdrop";
+import { HeaderVisual } from "@/components/three/HeaderVisual";
 
-/** İç sayfalar için tutarlı üst başlık — canlı animasyonlu arka plan üzerinde. */
+/** İç sayfalar için tutarlı üst başlık — canlı animasyonlu arka plan + 3D katman. */
 export function PageHeader({
   overline,
   title,
@@ -13,10 +14,12 @@ export function PageHeader({
   return (
     <header className="relative overflow-hidden bg-brand-botanic text-cream">
       <AnimatedBackdrop variant="dark" />
-      {/* Okunabilirlik için yumuşak koyulaştırma */}
+      {/* Sağ tarafta 3D süzülen meyve küreleri (boş alanı doldurur) */}
+      <HeaderVisual />
+      {/* Okunabilirlik için yumuşak koyulaştırma (soldan sağa) */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(120%_120%_at_20%_10%,rgb(var(--c-botanic)/0.35),rgb(var(--c-botanic)/0.8))]"
+        className="absolute inset-0 bg-[linear-gradient(90deg,rgb(var(--c-botanic)/0.92)_0%,rgb(var(--c-botanic)/0.75)_45%,rgb(var(--c-botanic)/0.35)_100%)]"
       />
 
       <div className="container-fluid relative z-10 pb-16 pt-32 md:pb-20 md:pt-40">

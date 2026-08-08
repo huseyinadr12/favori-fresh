@@ -14,7 +14,7 @@ export function ProductionEthos() {
         <Reveal>
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
             <Image
-              src="/img/uretim-limon-2.png"
+              src="/img/uretim-limon-2.webp"
               alt="Üretim hattında yıkanan taze limonlar"
               fill
               sizes="(max-width: 1024px) 100vw, 45vw"

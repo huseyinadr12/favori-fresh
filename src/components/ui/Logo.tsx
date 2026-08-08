@@ -11,7 +11,7 @@ export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
     <span className="inline-flex items-center gap-2.5">
       <span className="inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5">
         <Image
-          src="/img/logo-mark.jpeg"
+          src="/img/logo-mark.webp"
           alt="Favori Fresh yaprak logosu"
           width={36}
           height={36}

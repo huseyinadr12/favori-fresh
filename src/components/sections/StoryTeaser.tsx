@@ -47,7 +47,7 @@ export function StoryTeaser() {
           <figure className="relative">
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
               <Image
-                src="/img/marka-kasa.jpeg"
+                src="/img/marka-kasa.webp"
                 alt="Favori Fresh markalı kasada limonlar — Doğallık herkesin hakkı"
                 fill
                 sizes="(max-width: 768px) 100vw, 45vw"

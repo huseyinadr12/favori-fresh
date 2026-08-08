@@ -25,7 +25,7 @@ export default function StoryPage() {
       {/* Slogan bandı — hazır marka görseli (slogan metni görselin içinde) */}
       <section aria-label={storySlogan.line} className="bg-brand-botanic">
         <Image
-          src="/img/grup.png"
+          src="/img/grup.webp"
           alt={`${storySlogan.line} ${storySlogan.tag}`}
           width={3240}
           height={1350}
@@ -122,7 +122,7 @@ export default function StoryPage() {
           <Reveal delay={0.1}>
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
               <Image
-                src="/img/marka-polar.jpg"
+                src="/img/marka-polar.webp"
                 alt="Favori Fresh markalı ekip kıyafeti detayı"
                 fill
                 sizes="(max-width: 768px) 100vw, 45vw"

@@ -66,7 +66,7 @@ export default function HorecaPage() {
           <Reveal>
             <div className="relative aspect-[16/10] overflow-hidden rounded-3xl">
               <Image
-                src="/img/gorsel.png"
+                src="/img/gorsel.webp"
                 alt="Sıcak ışıklı bir mekânda çerçeveli botanik illüstrasyonlar"
                 fill
                 sizes="(max-width: 768px) 100vw, 45vw"

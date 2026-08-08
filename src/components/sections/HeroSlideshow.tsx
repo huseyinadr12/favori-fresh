@@ -10,11 +10,11 @@ import { useMotion } from "@/components/providers/MotionProvider";
  * yakınlaşmasıyla değişir. Hareket azaltmada tek kare sabit kalır.
  */
 const slides = [
-  { src: "/img/bahce-limon.jpg", alt: "Dalında olgunlaşmış Lamas limonları" },
-  { src: "/img/bahce-portakal.jpg", alt: "Güneş altında portakal bahçesi" },
-  { src: "/img/lamas-limon.jpg", alt: "Yakın planda taze limonlar" },
-  { src: "/img/bahce-limon-2.jpg", alt: "Limon bahçesi" },
-  { src: "/img/bahce.png", alt: "Meyve bahçesi" },
+  { src: "/img/bahce-limon.webp", alt: "Dalında olgunlaşmış Lamas limonları" },
+  { src: "/img/bahce-portakal.webp", alt: "Güneş altında portakal bahçesi" },
+  { src: "/img/lamas-limon.webp", alt: "Yakın planda taze limonlar" },
+  { src: "/img/bahce-limon-2.webp", alt: "Limon bahçesi" },
+  { src: "/img/bahce.webp", alt: "Meyve bahçesi" },
 ];
 
 const INTERVAL = 15000; // 15 sn

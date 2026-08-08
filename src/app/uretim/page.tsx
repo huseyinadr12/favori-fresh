@@ -93,9 +93,9 @@ export default function ProductionPage() {
           </h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {[
-              { src: "/img/uretim-limon-2.png", alt: "Yıkama hattında limonlar" },
-              { src: "/img/uretim-limonata.png", alt: "Dolum ve etiketleme hattı" },
-              { src: "/img/uretim-limonata-4.png", alt: "Şişeleme hattında ürünler" },
+              { src: "/img/uretim-limon-2.webp", alt: "Yıkama hattında limonlar" },
+              { src: "/img/uretim-limonata.webp", alt: "Dolum ve etiketleme hattı" },
+              { src: "/img/uretim-limonata-4.webp", alt: "Şişeleme hattında ürünler" },
             ].map((img, i) => (
               <Reveal key={img.src} delay={i * 0.06}>
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
@@ -119,7 +119,7 @@ export default function ProductionPage() {
           <Reveal>
             <div className="relative aspect-[16/10] overflow-hidden rounded-3xl">
               <Image
-                src="/img/lojistik.png"
+                src="/img/lojistik.webp"
                 alt="Favori Fresh markalı sevkiyat aracı"
                 fill
                 sizes="(max-width: 768px) 100vw, 45vw"

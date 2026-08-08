@@ -33,14 +33,14 @@ export const process = {
   title: "Bahçeden bardağa, tek bir yolculuk",
   body: "Meyve, hasat edildiği gün Mersin Erdemli tesisine ulaşır ve aynı gün işlenir. Katkısız üretim, -40°C şoklama ve donuk muhafazayla ilk gün tazeliği yıl boyu korunur.",
   steps: [
-    { title: "Hasat", text: "Meyve, olgunluğunun tam zamanında toplanır.", image: "/img/hasat-emek.png" },
-    { title: "Aynı gün tesiste", text: "Hasat günü Mersin Erdemli tesisimize ulaşır.", image: "/img/uretim-limon-3.png" },
-    { title: "Aynı gün işleme", text: "Bekletilmeden, katkısız biçimde aynı gün işlenir.", image: "/img/uretim-limon-4.png" },
-    { title: "-40°C şoklama", text: "Tazeliği kilitlemek için hızla şoklanır.", image: "/img/uretim-limonata-4.png" },
-    { title: "-20 / -25°C muhafaza", text: "Donuk depolarda yıl boyu korunur.", image: "/img/uretim-limonata.png" },
-    { title: "Sevkiyat", text: "Bayi ağıyla Türkiye geneline ulaşır.", image: "/img/lojistik.png" },
-    { title: "Servis", text: "Özler 1/4 hazırlanır; meyve suları içime hazır.", image: "/img/uretim-limonata-2.png" },
-    { title: "Bardak", text: "Her serviste ilk günkü tazelik.", image: "/img/lamas-limon.jpg" },
+    { title: "Hasat", text: "Meyve, olgunluğunun tam zamanında toplanır.", image: "/img/hasat-emek.webp" },
+    { title: "Aynı gün tesiste", text: "Hasat günü Mersin Erdemli tesisimize ulaşır.", image: "/img/uretim-limon-3.webp" },
+    { title: "Aynı gün işleme", text: "Bekletilmeden, katkısız biçimde aynı gün işlenir.", image: "/img/uretim-limon-4.webp" },
+    { title: "-40°C şoklama", text: "Tazeliği kilitlemek için hızla şoklanır.", image: "/img/uretim-limonata-4.webp" },
+    { title: "-20 / -25°C muhafaza", text: "Donuk depolarda yıl boyu korunur.", image: "/img/uretim-limonata.webp" },
+    { title: "Sevkiyat", text: "Bayi ağıyla Türkiye geneline ulaşır.", image: "/img/lojistik.webp" },
+    { title: "Servis", text: "Özler 1/4 hazırlanır; meyve suları içime hazır.", image: "/img/uretim-limonata-2.webp" },
+    { title: "Bardak", text: "Her serviste ilk günkü tazelik.", image: "/img/lamas-limon.webp" },
   ],
 };
 
