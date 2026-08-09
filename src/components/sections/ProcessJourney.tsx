@@ -60,19 +60,32 @@ export function ProcessJourney() {
                   className="absolute left-4 top-2 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full border-2 border-brand-botanic bg-accent-lemon md:left-1/2"
                 />
                 <div className="md:grid md:grid-cols-2 md:items-center md:gap-10">
-                  {/* Görsel */}
+                  {/* Görsel — ürün görselleri (şeffaf şişe) açık kartta,
+                      fotoğraflar object-cover ile gösterilir */}
                   <Reveal
                     className={`${right ? "md:order-2 md:pl-10" : "md:pr-10"}`}
                   >
-                    <div className="relative aspect-video overflow-hidden rounded-2xl ring-1 ring-cream/10">
-                      <Image
-                        src={step.image}
-                        alt={step.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 40vw"
-                        className="object-cover"
-                      />
-                    </div>
+                    {step.image.includes("/urun-") ? (
+                      <div className="relative aspect-video overflow-hidden rounded-2xl bg-gradient-to-br from-cream to-[#eef0e6] ring-1 ring-cream/10">
+                        <Image
+                          src={step.image}
+                          alt={step.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 40vw"
+                          className="object-contain p-4"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative aspect-video overflow-hidden rounded-2xl ring-1 ring-cream/10">
+                        <Image
+                          src={step.image}
+                          alt={step.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 40vw"
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
                   </Reveal>
                   {/* Metin */}
                   <Reveal
