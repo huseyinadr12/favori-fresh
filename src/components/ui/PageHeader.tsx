@@ -27,20 +27,15 @@ export function PageHeader({
 
   return (
     <header className="relative overflow-hidden bg-brand-botanic text-cream">
-      {/* Sağdaki görsel kendi katmanında yumuşakça açılır. */}
+      {/* Sağdaki görsel kendi katmanında yumuşakça açılır.
+          Not: clip-path KULLANILMAZ — kalıcı clip kenarı, parlak fotoğraf ile
+          koyu gradyanın 1px farklı yuvarlanmasına ve başlık boyunca inen dikey
+          açık çizgiye yol açıyordu. Opaklık + kayma aynı hissi verir, kenar bırakmaz. */}
       <motion.div
         aria-hidden
         className="absolute inset-y-0 right-0 hidden w-[58%] md:block"
-        initial={initial({
-          opacity: 0,
-          scale: 1.08,
-          clipPath: "inset(0 0 0 100%)",
-        })}
-        animate={{
-          opacity: 1,
-          scale: 1,
-          clipPath: "inset(0 0 0 0%)",
-        }}
+        initial={initial({ opacity: 0, x: 48, scale: 1.06 })}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
         transition={{ duration: 1.15, delay: 0.22, ease: EASE }}
       >
         <Image
@@ -51,7 +46,9 @@ export function PageHeader({
           sizes="58vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(var(--c-botanic))_0%,rgb(var(--c-botanic)/0.78)_55%,rgb(var(--c-botanic)/0.5)_100%)]" />
+        {/* Gradyan panelin sol kenarından birkaç px taşar: yuvarlama farkı olsa
+            bile kenarda açık piksel sızamaz (çizgi garantili yok). */}
+        <div className="absolute -left-2 inset-y-0 right-0 bg-[linear-gradient(90deg,rgb(var(--c-botanic))_0%,rgb(var(--c-botanic)/0.78)_55%,rgb(var(--c-botanic)/0.5)_100%)]" />
       </motion.div>
 
       <div className="container-fluid relative z-10 pb-16 pt-32 md:pb-20 md:pt-40">
