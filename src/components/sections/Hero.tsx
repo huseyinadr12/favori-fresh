@@ -20,7 +20,7 @@ export function Hero() {
       <HeroSlideshow />
 
       <div className="container-fluid relative z-10 flex justify-end py-28">
-        <div className="w-full max-w-xl md:mr-[2%] lg:mr-[6%]">
+        <div className="w-full max-w-xl md:text-right">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-9 flex flex-wrap gap-3"
+            className="mt-9 flex flex-wrap gap-3 md:justify-end"
           >
             <LiquidButton href={intro.primaryCta.href}>
               {intro.primaryCta.label}

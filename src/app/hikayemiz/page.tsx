@@ -4,7 +4,8 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { LiquidButton } from "@/components/ui/LiquidButton";
 import { brand } from "@/content/site";
-import { storyIntro, timeline, storySlogan, production } from "@/content/story";
+import { storyIntro, storySlogan, production } from "@/content/story";
+import { StoryTimeline } from "@/components/sections/StoryTimeline";
 
 export const metadata: Metadata = {
   title: "Hikâyemiz",
@@ -35,45 +36,9 @@ export default function StoryPage() {
         />
       </section>
 
-      {/* Zaman çizelgesi */}
+      {/* Zaman çizelgesi — katmanlı parallax geçişler */}
       <section className="container-fluid py-20 md:py-28">
-        <div className="mx-auto max-w-4xl">
-          <ol className="relative border-l border-ink/15 pl-6 md:pl-8">
-            {timeline.map((node, i) => (
-              <Reveal
-                as="li"
-                key={node.year}
-                delay={i * 0.05}
-                className="mb-16 last:mb-0"
-              >
-                <span
-                  aria-hidden
-                  className="absolute -left-[9px] mt-1.5 h-4 w-4 rounded-full border-2 border-cream bg-brand-green"
-                />
-                <div className="grid gap-6 md:grid-cols-[1fr_1.1fr] md:items-center">
-                  <div>
-                    <span className="font-display text-4xl text-brand-green/80">
-                      {node.year}
-                    </span>
-                    <h2 className="mt-2 font-display text-2xl">{node.title}</h2>
-                    <p className="mt-3 text-ink/70">{node.text}</p>
-                  </div>
-                  {node.image && (
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-                      <Image
-                        src={node.image}
-                        alt={node.imageAlt ?? node.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 40vw"
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-                </div>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
+        <StoryTimeline />
       </section>
 
       {/* Üretim anlayışı */}

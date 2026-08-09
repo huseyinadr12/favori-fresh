@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { brand, contact, footerLinks } from "@/content/site";
 import { Logo } from "@/components/ui/Logo";
-import { ExperienceToggle } from "@/components/ui/ExperienceToggle";
 
 export function SiteFooter() {
   return (
@@ -22,7 +21,6 @@ export function SiteFooter() {
           <p className="max-w-xs text-sm text-cream/70">
             {brand.promise} {brand.region} üretim kültüründen doğal içecekler.
           </p>
-          <ExperienceToggle className="pt-2" />
         </div>
 
         {Object.entries(footerLinks).map(([title, links]) => (

@@ -117,7 +117,7 @@ export function ProductUniverse() {
               className="relative h-full w-full overflow-hidden rounded-[2rem]"
               style={{
                 background:
-                  "radial-gradient(circle at 50% 42%, rgb(var(--c-accent) / 0.24), rgba(7,9,8,1) 70%)",
+                  "radial-gradient(circle at 50% 32%, rgb(var(--c-accent) / 0.2), rgb(var(--c-cream)) 70%)",
               }}
             >
               <AnimatePresence mode="popLayout">
@@ -135,7 +135,7 @@ export function ProductUniverse() {
                       alt={`${active.name} ürün görseli`}
                       fill
                       sizes="(max-width: 768px) 90vw, 45vw"
-                      className="object-contain p-6"
+                      className="object-contain p-8 drop-shadow-[0_24px_44px_rgba(0,0,0,0.22)]"
                     />
                   )}
                 </motion.div>

@@ -41,7 +41,6 @@ export const contact = {
   coords: { lat: 36.6155, lng: 34.282 },
   social: {
     instagram: "https://www.instagram.com/favori_fresh/",
-    trendyol: "https://www.trendyol.com/",
   },
   // Adres/telefon doğrulanmıştır; sosyal medya bağlantıları marka tarafından güncellenmelidir.
   isPlaceholder: false,

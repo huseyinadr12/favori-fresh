@@ -32,7 +32,7 @@ export function ProductShowcase3D({ product }: { product: Product }) {
         style={cssVars({
           "--c-accent": accentRgb[product.accent],
           background:
-            "radial-gradient(circle at 50% 40%, rgb(var(--c-accent) / 0.26), rgba(7,9,8,1) 72%)",
+            "radial-gradient(circle at 50% 32%, rgb(var(--c-accent) / 0.18), rgb(var(--c-cream)) 72%)",
         })}
       >
         <Image
@@ -41,7 +41,7 @@ export function ProductShowcase3D({ product }: { product: Product }) {
           fill
           priority
           sizes="(max-width: 768px) 100vw, 45vw"
-          className="object-contain p-6"
+          className="object-contain p-8 drop-shadow-[0_24px_44px_rgba(0,0,0,0.22)]"
         />
       </div>
     );

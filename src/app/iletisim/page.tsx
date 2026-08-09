@@ -69,14 +69,6 @@ export default function ContactPage() {
             >
               Instagram
             </a>
-            <a
-              href={contact.social.trendyol}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-brand-green hover:underline"
-            >
-              Trendyol
-            </a>
           </div>
         </div>
 

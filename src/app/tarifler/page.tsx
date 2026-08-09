@@ -34,62 +34,24 @@ export default function RecipesPage() {
               style={cssVars({ "--c-accent": accentRgb[p.accent] })}
             >
               <div className="container-fluid grid items-center gap-8 py-14 md:grid-cols-2 md:gap-14 md:py-20">
-                {/* Görsel — ürün (koyu sahne) + varsa bahçe */}
+                {/* Görsel — yalnızca ürün */}
                 <Reveal className={right ? "md:order-2" : ""}>
-                  <div className="grid grid-cols-3 gap-3">
-                    <div
-                      className="relative col-span-2 aspect-[4/5] overflow-hidden rounded-3xl"
-                      style={{
-                        background:
-                          "radial-gradient(circle at 50% 40%, rgb(var(--c-accent) / 0.24), rgba(7,9,8,1) 72%)",
-                      }}
-                    >
-                      {p.bottleImage && (
-                        <Image
-                          src={p.bottleImage}
-                          alt={`${p.name} ürün görseli`}
-                          fill
-                          sizes="(max-width: 768px) 60vw, 30vw"
-                          className="object-contain p-5"
-                        />
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-3">
-                      <div
-                        className="relative aspect-square overflow-hidden rounded-2xl"
-                        style={{
-                          background:
-                            "radial-gradient(circle at 40% 30%, rgb(var(--c-accent) / 0.3), rgb(var(--c-accent) / 0.08))",
-                        }}
-                      >
-                        {p.orchardImage ? (
-                          <Image
-                            src={p.orchardImage}
-                            alt={p.fruitSource}
-                            fill
-                            sizes="(max-width: 768px) 30vw, 15vw"
-                            className="object-cover"
-                          />
-                        ) : (
-                          <span
-                            aria-hidden
-                            className="absolute inset-0 m-auto h-1/2 w-1/2 rounded-full"
-                            style={{
-                              background:
-                                "radial-gradient(circle at 35% 30%, rgb(var(--c-accent)), rgb(var(--c-accent) / 0.5))",
-                            }}
-                          />
-                        )}
-                      </div>
-                      <div className="flex-1 rounded-2xl border border-ink/10 p-3 text-center">
-                        <p className="font-display text-2xl text-accentnow">
-                          {p.dilution ? "1/4" : "Hazır"}
-                        </p>
-                        <p className="text-[11px] text-ink/55">
-                          {p.dilution ? "sulandırma" : "içime hazır"}
-                        </p>
-                      </div>
-                    </div>
+                  <div
+                    className="relative mx-auto aspect-[4/5] max-w-md overflow-hidden rounded-3xl"
+                    style={{
+                      background:
+                        "radial-gradient(circle at 50% 32%, rgb(var(--c-accent) / 0.16), rgb(var(--c-cream)) 72%)",
+                    }}
+                  >
+                    {p.bottleImage && (
+                      <Image
+                        src={p.bottleImage}
+                        alt={`${p.name} ürün görseli`}
+                        fill
+                        sizes="(max-width: 768px) 80vw, 40vw"
+                        className="object-contain p-8 drop-shadow-[0_22px_40px_rgba(0,0,0,0.2)]"
+                      />
+                    )}
                   </div>
                 </Reveal>
 

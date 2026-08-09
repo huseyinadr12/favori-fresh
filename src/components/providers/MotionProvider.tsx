@@ -62,10 +62,8 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const shouldRender3D = useMemo(
-    () => webglSupported && experienceEnabled && !prefersReducedMotion,
-    [webglSupported, experienceEnabled, prefersReducedMotion],
-  );
+  // 3D deneyim zorunlu: WebGL destekleniyorsa her zaman render edilir.
+  const shouldRender3D = webglSupported;
 
   const value = useMemo<MotionState>(
     () => ({

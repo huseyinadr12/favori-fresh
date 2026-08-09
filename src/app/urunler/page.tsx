@@ -46,7 +46,7 @@ export default function ProductsPage() {
                       className="relative aspect-[4/5]"
                       style={{
                         background:
-                          "radial-gradient(circle at 50% 40%, rgb(var(--c-accent) / 0.22), rgba(7,9,8,1) 72%)",
+                          "radial-gradient(circle at 50% 32%, rgb(var(--c-accent) / 0.16), rgb(var(--c-cream)) 72%)",
                       }}
                     >
                       {p.bottleImage && (
@@ -55,7 +55,7 @@ export default function ProductsPage() {
                           alt={`${p.name} ürün görseli`}
                           fill
                           sizes="(max-width: 640px) 100vw, 33vw"
-                          className="object-contain p-6 transition-transform duration-700 ease-fluid group-hover:scale-105"
+                          className="object-contain p-7 drop-shadow-[0_18px_34px_rgba(0,0,0,0.2)] transition-transform duration-700 ease-fluid group-hover:scale-105"
                         />
                       )}
                       <span className="absolute left-4 top-4 rounded-full bg-white/85 px-2.5 py-1 text-[11px] font-medium text-ink/70 backdrop-blur">

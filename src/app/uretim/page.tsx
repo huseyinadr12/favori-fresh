@@ -149,26 +149,6 @@ export default function ProductionPage() {
         </div>
       </section>
 
-      {/* Sertifika alanı — yalnızca doğrulanmış logolar eklenir (şimdilik boş). */}
-      <section className="border-t border-ink/10 bg-cream">
-        <div className="container-fluid py-14">
-          <h2 className="font-display text-fluid-h3">Belgeler & sertifikalar</h2>
-          <p className="mt-3 max-w-xl text-ink/60">
-            Yalnızca marka tarafından doğrulanmış belgeler burada yayımlanır. Bu
-            alan, resmî belgeler sağlandığında güncellenecektir.
-          </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div
-                key={i}
-                className="aspect-[3/2] rounded-xl border border-dashed border-ink/20 bg-ink/[0.02] [display:grid] [place-items:center] text-xs text-ink/40"
-              >
-                Sertifika alanı
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }
