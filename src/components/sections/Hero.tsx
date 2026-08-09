@@ -80,16 +80,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Su damlası scroll göstergesi */}
-      <a
-        href="#urun-evreni"
-        aria-label="Aşağı kaydır"
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2"
-      >
-        <span className="relative block h-10 w-6 rounded-full border border-cream/50">
-          <span className="absolute left-1/2 top-2 h-2 w-2 -translate-x-1/2 animate-drop-fall rounded-full bg-cream" />
-        </span>
-      </a>
     </section>
   );
 }
