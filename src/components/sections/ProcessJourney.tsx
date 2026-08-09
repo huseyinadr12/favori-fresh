@@ -75,6 +75,17 @@ export function ProcessJourney() {
                           className="object-contain p-4"
                         />
                       </div>
+                    ) : step.image.includes("bardak-glass") ? (
+                      // Bardak görseli portre — tam görünmesi için portre kart + contain
+                      <div className="relative mx-auto aspect-[3/4] max-w-[300px] overflow-hidden rounded-2xl bg-gradient-to-b from-[#26261c] to-[#14140f] ring-1 ring-cream/10">
+                        <Image
+                          src={step.image}
+                          alt={step.title}
+                          fill
+                          sizes="(max-width: 768px) 80vw, 30vw"
+                          className="object-contain"
+                        />
+                      </div>
                     ) : (
                       <div className="relative aspect-video overflow-hidden rounded-2xl ring-1 ring-cream/10">
                         <Image
