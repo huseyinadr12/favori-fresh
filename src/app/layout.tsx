@@ -6,6 +6,7 @@ import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { CursorTrail } from "@/components/ui/CursorTrail";
+import { PageTransition } from "@/components/ui/PageTransition";
 import { brand } from "@/content/site";
 
 // Başlık ailesi — karakterli, premium, tam Türkçe (latin-ext).
@@ -90,6 +91,7 @@ export default function RootLayout({
         />
         <MotionProvider>
           <SmoothScroll />
+          <PageTransition />
           <CursorTrail />
           <a
             href="#icerik"
