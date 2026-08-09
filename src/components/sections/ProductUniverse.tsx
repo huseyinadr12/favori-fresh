@@ -42,10 +42,14 @@ export function ProductUniverse() {
       id="urun-evreni"
       ref={ref}
       aria-label="Ürün evreni"
-      className="relative"
-      style={cssVars({ height: `${total * 82}vh`, "--c-accent": accentVar })}
+      className="relative h-[var(--universe-height-mobile)] md:h-[var(--universe-height-desktop)]"
+      style={cssVars({
+        "--universe-height-mobile": `${total * 112}svh`,
+        "--universe-height-desktop": `${total * 82}vh`,
+        "--c-accent": accentVar,
+      })}
     >
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-[100svh] overflow-hidden md:h-screen">
         {/* Morph olan arka plan */}
         <div
           aria-hidden
