@@ -19,13 +19,13 @@ export function Hero() {
     >
       <HeroSlideshow />
 
-      <div className="container-fluid relative z-10 flex justify-end py-28">
-        <div className="w-full max-w-xl md:text-right">
+      <div className="container-fluid relative z-10 flex justify-center py-28 text-center">
+        <div className="w-full max-w-3xl">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="kicker text-cream/80"
+            className="kicker justify-center text-cream/80"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-accent-lemon" />
             {intro.overline}
@@ -44,7 +44,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="mt-6 max-w-xl text-fluid-lead text-cream/85"
+            className="mx-auto mt-6 max-w-xl text-fluid-lead text-cream/85"
           >
             {hero.body}
           </motion.p>
@@ -53,7 +53,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-9 flex flex-wrap gap-3 md:justify-end"
+            className="mt-9 flex flex-wrap justify-center gap-3"
           >
             <LiquidButton href={intro.primaryCta.href}>
               {intro.primaryCta.label}
@@ -68,7 +68,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-14 grid max-w-2xl grid-cols-3 gap-4 border-t border-cream/20 pt-6"
+            className="mx-auto mt-14 grid max-w-2xl grid-cols-3 gap-4 border-t border-cream/20 pt-6"
           >
             {hero.stats.map((s) => (
               <div key={s.label}>

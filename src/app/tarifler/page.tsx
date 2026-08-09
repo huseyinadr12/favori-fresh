@@ -49,7 +49,7 @@ export default function RecipesPage() {
                         alt={`${p.name} ürün görseli`}
                         fill
                         sizes="(max-width: 768px) 80vw, 40vw"
-                        className="object-contain p-8 drop-shadow-[0_22px_40px_rgba(0,0,0,0.2)]"
+                        className="object-contain p-8"
                       />
                     )}
                   </div>

@@ -41,7 +41,7 @@ export function ProductShowcase3D({ product }: { product: Product }) {
           fill
           priority
           sizes="(max-width: 768px) 100vw, 45vw"
-          className="object-contain p-8 drop-shadow-[0_24px_44px_rgba(0,0,0,0.22)]"
+          className="object-contain p-8"
         />
       </div>
     );

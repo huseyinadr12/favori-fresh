@@ -1,26 +1,36 @@
-import { AnimatedBackdrop } from "@/components/ui/AnimatedBackdrop";
-import { HeaderVisual } from "@/components/three/HeaderVisual";
+import Image from "next/image";
 
-/** İç sayfalar için tutarlı üst başlık — canlı animasyonlu arka plan + 3D katman. */
+/**
+ * İç sayfalar için tutarlı üst başlık.
+ * Sağ tarafta atmosferik, solmuş gerçek bir bahçe görseli (yapay 3D balon yok);
+ * soldan gelen degrade ile metin her zaman okunur kalır.
+ */
 export function PageHeader({
   overline,
   title,
   description,
+  image = "/img/bahce-limon.webp",
 }: {
   overline?: string;
   title: string;
   description?: string;
+  image?: string;
 }) {
   return (
     <header className="relative overflow-hidden bg-brand-botanic text-cream">
-      <AnimatedBackdrop variant="dark" />
-      {/* Sağ tarafta 3D süzülen meyve küreleri (boş alanı doldurur) */}
-      <HeaderVisual />
-      {/* Okunabilirlik için yumuşak koyulaştırma (soldan sağa) */}
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(90deg,rgb(var(--c-botanic)/0.92)_0%,rgb(var(--c-botanic)/0.75)_45%,rgb(var(--c-botanic)/0.35)_100%)]"
-      />
+      {/* Sağda solmuş bahçe görseli */}
+      <div aria-hidden className="absolute inset-y-0 right-0 hidden w-[55%] md:block">
+        <Image
+          src={image}
+          alt=""
+          fill
+          priority
+          sizes="55vw"
+          className="object-cover"
+        />
+        {/* Soldan sağa degrade: sol taraf tamamen yeşil, sağa doğru açılır */}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(var(--c-botanic))_0%,rgb(var(--c-botanic)/0.85)_30%,rgb(var(--c-botanic)/0.35)_100%)]" />
+      </div>
 
       <div className="container-fluid relative z-10 pb-16 pt-32 md:pb-20 md:pt-40">
         {overline && (

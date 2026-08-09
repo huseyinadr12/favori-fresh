@@ -78,7 +78,7 @@ function TimelineItem({ node, index }: { node: TimelineNode; index: number }) {
           style={{ y: textY }}
           className={`mt-5 md:mt-0 ${right ? "md:order-1 md:pr-8 md:text-right" : "md:pl-8"}`}
         >
-          <span className="font-display text-4xl text-brand-green/80">
+          <span className="whitespace-nowrap font-display text-4xl text-brand-green/80">
             {node.year}
           </span>
           <h3 className="mt-2 font-display text-2xl">{node.title}</h3>

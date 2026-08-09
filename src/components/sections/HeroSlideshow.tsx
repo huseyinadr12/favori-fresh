@@ -58,10 +58,10 @@ export function HeroSlideshow() {
         </div>
       ))}
 
-      {/* Okunabilirlik için degrade örtü — metin sağda olduğundan sağ taraf
-          biraz daha koyu; yeşil örtü hafif tutuldu ki görseller daha görünür. */}
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-botanic/15 via-brand-botanic/30 to-brand-botanic/75" />
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-botanic/45 via-transparent to-brand-botanic/20" />
+      {/* Okunabilirlik için örtü — metin merkezde olduğundan hafif merkezi
+          vinyet; yeşil örtü ölçülü tutuldu ki görseller görünür kalsın. */}
+      <div className="absolute inset-0 bg-[radial-gradient(125%_120%_at_50%_44%,rgb(var(--c-botanic)/0.4),rgb(var(--c-botanic)/0.74))]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-brand-botanic/55 via-transparent to-brand-botanic/25" />
     </div>
   );
 }

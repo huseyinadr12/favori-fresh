@@ -49,7 +49,7 @@ export const products: Product[] = [
     category: "oz",
     tagline: "Lamas limonundan ilk gün ferahlığı",
     story:
-      "İnce kabuklu Lamas limonunun keskin ferahlığını, ev yapımı limonatanın berrak sitrus dengesiyle korur. Hasat günü işlenir, -40°C'de şoklanır; 1/4 oranında hazırlandığında ilk günkü tazeliğini verir.",
+      "Kalın kabuklu, dikenli Lamas limonunun keskin ferahlığını, ev yapımı limonatanın berrak sitrus dengesiyle korur. Hasat günü işlenir, -40°C'de şoklanır; 1/4 oranında hazırlandığında ilk günkü tazeliğini verir.",
     fruitSource: "Mersin / Erdemli — Lamas limonu",
     accent: "lemon",
     serving: "Buzla; bardağın kenarına ince limon kabuğu spiraliyle servis edilir.",

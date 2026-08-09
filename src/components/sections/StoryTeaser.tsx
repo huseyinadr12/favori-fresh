@@ -28,7 +28,7 @@ export function StoryTeaser() {
           <ol className="mt-8 space-y-3">
             {teaser.map((node) => (
               <li key={node.year} className="flex gap-4">
-                <span className="w-20 shrink-0 font-display text-accent-lemon">
+                <span className="w-24 shrink-0 whitespace-nowrap font-display text-accent-lemon">
                   {node.year}
                 </span>
                 <span className="text-sm text-cream/80">{node.title}</span>

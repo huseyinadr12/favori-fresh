@@ -111,7 +111,8 @@ export function ProductUniverse() {
             </AnimatePresence>
           </div>
 
-          {/* Sağ: ürün şişesi (koyu stüdyo sahnesi + simetrik geçiş) */}
+          {/* Sağ: ürün şişesi — tüm görseller yığılı, aktif olan crossfade +
+              hafif ölçek/dönüşle açılır (mount/unmount yok → akıcı, takılmasız) */}
           <div className="relative order-1 h-[40vh] md:order-2 md:h-[76vh]">
             <div
               className="relative h-full w-full overflow-hidden rounded-[2rem]"
@@ -120,26 +121,34 @@ export function ProductUniverse() {
                   "radial-gradient(circle at 50% 32%, rgb(var(--c-accent) / 0.2), rgb(var(--c-cream)) 70%)",
               }}
             >
-              <AnimatePresence mode="popLayout">
-                <motion.div
-                  key={active.slug}
-                  initial={{ opacity: 0, scale: 0.82 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.82 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0"
-                >
-                  {active.bottleImage && (
-                    <Image
-                      src={active.bottleImage}
-                      alt={`${active.name} ürün görseli`}
-                      fill
-                      sizes="(max-width: 768px) 90vw, 45vw"
-                      className="object-contain p-8 drop-shadow-[0_24px_44px_rgba(0,0,0,0.22)]"
-                    />
-                  )}
-                </motion.div>
-              </AnimatePresence>
+              {products.map((p, i) => {
+                const isActive = i === activeIndex;
+                return (
+                  <div
+                    key={p.slug}
+                    aria-hidden={!isActive}
+                    className="absolute inset-0 will-change-[transform,opacity]"
+                    style={{
+                      opacity: isActive ? 1 : 0,
+                      transform: isActive
+                        ? "scale(1) rotate(0deg)"
+                        : "scale(0.86) rotate(-3deg)",
+                      transition:
+                        "opacity 700ms cubic-bezier(0.22,1,0.36,1), transform 800ms cubic-bezier(0.22,1,0.36,1)",
+                    }}
+                  >
+                    {p.bottleImage && (
+                      <Image
+                        src={p.bottleImage}
+                        alt={`${p.name} ürün görseli`}
+                        fill
+                        sizes="(max-width: 768px) 90vw, 45vw"
+                        className="object-contain p-8"
+                      />
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
