@@ -39,8 +39,8 @@ export const process = {
     { title: "-40°C şoklama", text: "Tazeliği kilitlemek için hızla şoklanır.", image: "/img/uretim-limonata-4.webp" },
     { title: "-20 / -25°C muhafaza", text: "Donuk depolarda yıl boyu korunur.", image: "/img/uretim-limonata.webp" },
     { title: "Sevkiyat", text: "Bayi ağıyla Türkiye geneline ulaşır.", image: "/img/lojistik.webp" },
-    { title: "Servis", text: "Özler 1/4 hazırlanır; meyve suları içime hazır.", image: "/img/urun-limonata.webp" },
-    { title: "Bardak", text: "Her serviste ilk günkü tazelik.", image: "/img/urun-portakal.webp" },
+    { title: "Servis", text: "Özler 1/4 hazırlanır; meyve suları içime hazır.", image: "/img/gorsel.webp" },
+    { title: "Bardak", text: "Her serviste ilk günkü tazelik.", image: "/img/urun-limonata.webp" },
   ],
 };
 

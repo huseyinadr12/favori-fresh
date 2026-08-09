@@ -7,21 +7,24 @@ import { AnimatePresence, motion } from "motion/react";
 import { useMotion } from "@/components/providers/MotionProvider";
 
 /**
- * Sayfa geçiş animasyonu — soldan sağa süpüren limonata dalgası.
- * Önde eğik bir limonata şişesi ekranı boydan boya geçerken dökülüp fışkırır;
- * dalga ekranı kaplar, sonra sağa doğru süzülüp yeni sayfayı açar.
- * Hareket azaltma tercihinde devre dışıdır.
+ * Sayfa geçiş animasyonu — limonata açılış sekansı:
+ * 1) Limonata şişesi düşer, 2) kapağı fırlar, 3) limonata yukarı fışkırıp
+ * ekranı doldurur, 4) üzerine "FAVORİ FRESH" soldan sağa yazılır, 5) süzülüp
+ * yeni sayfayı açar. Hareket azaltma tercihinde devre dışıdır.
  */
 
-// Şişe ağzından fışkıran damlalar (öncü kenarda, ileri-yukarı savrulur).
+// Şişe ağzından yukarı fışkıran damlalar.
 const DROPLETS = [
-  { top: "24%", size: 16, dx: 90, dy: -70, delay: 0.02 },
-  { top: "30%", size: 11, dx: 130, dy: -30, delay: 0.08 },
-  { top: "20%", size: 20, dx: 70, dy: -110, delay: 0 },
-  { top: "38%", size: 13, dx: 120, dy: 20, delay: 0.06 },
-  { top: "28%", size: 9, dx: 160, dy: -60, delay: 0.12 },
-  { top: "34%", size: 15, dx: 100, dy: -20, delay: 0.04 },
+  { size: 13, dx: -40, dy: -150, delay: 0.0 },
+  { size: 17, dx: 12, dy: -195, delay: 0.05 },
+  { size: 10, dx: 55, dy: -140, delay: 0.02 },
+  { size: 15, dx: -70, dy: -170, delay: 0.08 },
+  { size: 9, dx: 80, dy: -120, delay: 0.11 },
+  { size: 12, dx: -95, dy: -125, delay: 0.06 },
+  { size: 11, dx: 35, dy: -175, delay: 0.09 },
 ];
+
+const DUR = 1.5;
 
 export function PageTransition() {
   const pathname = usePathname();
@@ -36,7 +39,7 @@ export function PageTransition() {
     }
     if (prefersReducedMotion) return;
     setActive(true);
-    const t = setTimeout(() => setActive(false), 1050);
+    const t = setTimeout(() => setActive(false), DUR * 1000 + 250);
     return () => clearTimeout(t);
   }, [pathname, prefersReducedMotion]);
 
@@ -47,48 +50,99 @@ export function PageTransition() {
           key="page-transition"
           aria-hidden
           className="pointer-events-none fixed inset-0 z-[95] overflow-hidden"
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
         >
-          {/* Soldan sağa süpüren katman */}
+          {/* Limonata dolgusu — alttan yükselip ekranı kaplar */}
           <motion.div
-            className="absolute inset-0"
-            initial={{ x: "-105%" }}
-            animate={{ x: ["-105%", "0%", "0%", "105%"] }}
+            className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-accent-orange via-accent-lemon to-[#f6e08c]"
+            initial={{ height: "0%" }}
+            animate={{ height: ["0%", "0%", "128%", "128%"] }}
             transition={{
-              duration: 1.0,
-              times: [0, 0.44, 0.56, 1],
-              ease: [0.7, 0, 0.3, 1],
+              duration: DUR,
+              times: [0, 0.26, 0.62, 1],
+              ease: [0.6, 0, 0.35, 1],
             }}
           >
-            {/* Limonata yüzeyi — kenarları hafif eğik (dinamik dalga) */}
-            <div className="absolute -inset-x-24 inset-y-0 -skew-x-6 bg-gradient-to-r from-accent-orange via-accent-lemon to-[#f6e08c]" />
+            <div className="absolute -top-6 left-0 h-12 w-full rounded-[100%] bg-[#f6e08c]" />
+          </motion.div>
 
-            {/* Öncü kenarda eğik limonata şişesi (dökülüyor) */}
-            <div className="absolute right-[6vw] top-1/2 h-[46vh] max-h-[440px] w-[26vh] max-w-[250px] -translate-y-1/2 rotate-[40deg]">
+          {/* Şişe + kapak + fışkırma */}
+          <div className="absolute left-1/2 top-[20%] -translate-x-1/2">
+            {/* Şişe düşer */}
+            <motion.div
+              className="relative h-[38vh] max-h-[340px] w-[20vh] max-w-[190px]"
+              initial={{ y: -70, opacity: 0 }}
+              animate={{ y: [-70, 0, 0], opacity: [0, 1, 1] }}
+              transition={{ duration: 0.55, times: [0, 0.65, 1], ease: "easeOut" }}
+            >
               <Image
                 src="/img/urun-limonata.webp"
                 alt=""
                 fill
-                sizes="250px"
-                className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.35)]"
+                sizes="190px"
+                className="object-contain drop-shadow-[0_18px_36px_rgba(0,0,0,0.3)]"
               />
-            </div>
+            </motion.div>
 
-            {/* Şişe ağzından fışkıran damlalar */}
+            {/* Kapak fırlar */}
+            <motion.div
+              className="absolute left-1/2 top-[2%] h-5 w-9 -translate-x-1/2 rounded-md bg-accent-lemon shadow-md"
+              initial={{ y: 0, x: 0, rotate: 0, opacity: 0 }}
+              animate={{
+                y: [0, 0, -80, -170],
+                x: [0, 0, 40, 95],
+                rotate: [0, 0, 140, 300],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{ duration: 0.85, times: [0, 0.34, 0.6, 1], ease: "easeOut" }}
+            />
+
+            {/* Yukarı fışkıran damlalar (şişe ağzından) */}
             {DROPLETS.map((d, i) => (
               <motion.span
                 key={i}
-                className="absolute right-[4vw] rounded-full bg-[#fff4c2] shadow-[0_0_14px_rgba(255,240,170,0.8)]"
-                style={{ top: d.top, width: d.size, height: d.size }}
+                className="absolute left-1/2 top-[4%] rounded-full bg-[#fff4c2] shadow-[0_0_14px_rgba(255,240,170,0.85)]"
+                style={{ width: d.size, height: d.size }}
                 initial={{ x: 0, y: 0, opacity: 0, scale: 0.5 }}
                 animate={{
-                  x: [0, d.dx, d.dx + 40],
-                  y: [0, d.dy, d.dy + 50],
+                  x: [0, d.dx, d.dx * 1.3],
+                  y: [0, d.dy, d.dy + 90],
                   opacity: [0, 1, 0],
                   scale: [0.5, 1, 0.6],
                 }}
-                transition={{ duration: 0.7, delay: 0.3 + d.delay, ease: "easeOut" }}
+                transition={{ duration: 0.85, delay: 0.36 + d.delay, ease: "easeOut" }}
               />
             ))}
+          </div>
+
+          {/* "FAVORİ FRESH" logosu — soldan sağa yazılır */}
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}
+            animate={{
+              clipPath: [
+                "inset(0 100% 0 0)",
+                "inset(0 100% 0 0)",
+                "inset(0 0% 0 0)",
+              ],
+              opacity: [0, 0, 1],
+            }}
+            transition={{
+              duration: DUR,
+              times: [0, 0.64, 0.94],
+              ease: [0.65, 0, 0.35, 1],
+            }}
+          >
+            <div className="relative h-[8vh] max-h-[64px] w-[62vw] max-w-[420px] drop-shadow-[0_4px_10px_rgba(0,0,0,0.15)]">
+              <Image
+                src="/img/logo-favori.webp"
+                alt=""
+                fill
+                sizes="420px"
+                className="object-contain"
+              />
+            </div>
           </motion.div>
         </motion.div>
       )}
