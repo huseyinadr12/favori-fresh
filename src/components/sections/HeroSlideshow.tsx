@@ -23,6 +23,9 @@ const INTERVAL = 22000; // ~22 sn — sakin geçiş
 export function HeroSlideshow() {
   const { prefersReducedMotion } = useMotion();
   const [index, setIndex] = useState(0);
+  // Görselleri sırası gelince yükle: açılışta yalnızca ilk (ve bir sonraki) kare
+  // indirilir; kalanlar geçiş yaklaştıkça eklenir → çok daha hafif ilk yükleme.
+  const [loaded, setLoaded] = useState<number[]>([0, 1 % slides.length]);
 
   useEffect(() => {
     if (prefersReducedMotion) return;
@@ -33,6 +36,16 @@ export function HeroSlideshow() {
     return () => clearInterval(id);
   }, [prefersReducedMotion]);
 
+  // Aktif kare ve bir sonrasını yüklenecekler listesine ekle.
+  useEffect(() => {
+    const next = (index + 1) % slides.length;
+    setLoaded((prev) =>
+      prev.includes(index) && prev.includes(next)
+        ? prev
+        : Array.from(new Set([...prev, index, next])),
+    );
+  }, [index]);
+
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden">
       {slides.map((s, i) => (
@@ -41,21 +54,24 @@ export function HeroSlideshow() {
           className="absolute inset-0 transition-opacity duration-[2600ms] ease-fluid"
           style={{ opacity: i === index ? 1 : 0 }}
         >
-          <Image
-            src={s.src}
-            alt={s.alt}
-            fill
-            priority={i === 0}
-            sizes="100vw"
-            className="object-cover"
-            style={{
-              // Aktif kare çok hafifçe yakınlaşır (sakin Ken Burns).
-              transform: i === index && !prefersReducedMotion ? "scale(1.05)" : "scale(1)",
-              transition: prefersReducedMotion
-                ? undefined
-                : "transform 24s ease-out",
-            }}
-          />
+          {loaded.includes(i) && (
+            <Image
+              src={s.src}
+              alt={s.alt}
+              fill
+              priority={i === 0}
+              sizes="100vw"
+              className="object-cover"
+              style={{
+                // Aktif kare çok hafifçe yakınlaşır (sakin Ken Burns).
+                transform:
+                  i === index && !prefersReducedMotion ? "scale(1.05)" : "scale(1)",
+                transition: prefersReducedMotion
+                  ? undefined
+                  : "transform 24s ease-out",
+              }}
+            />
+          )}
         </div>
       ))}
 
