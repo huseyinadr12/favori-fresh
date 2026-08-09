@@ -56,7 +56,7 @@ export function ProductUniverse() {
           }}
         />
 
-        <div className="container-fluid relative grid h-full grid-rows-[1fr_auto] items-center gap-6 py-24 md:grid-cols-2 md:grid-rows-1 md:gap-10">
+        <div className="container-fluid relative flex h-full flex-col justify-center gap-4 py-12 md:grid md:grid-cols-2 md:items-center md:gap-10 md:py-24">
           {/* Sol: metin */}
           <div className="relative z-10 order-2 md:order-1">
             <p className="kicker text-accentnow">
@@ -82,9 +82,11 @@ export function ProductUniverse() {
                 <p className="mt-2 text-fluid-lead text-ink/70">
                   {active.tagline}
                 </p>
-                <p className="mt-4 max-w-md text-ink/70">{active.story}</p>
+                <p className="mt-3 line-clamp-3 max-w-md text-ink/70 md:line-clamp-none">
+                  {active.story}
+                </p>
 
-                <dl className="mt-6 grid max-w-md grid-cols-2 gap-4 text-sm">
+                <dl className="mt-5 hidden max-w-md grid-cols-2 gap-4 text-sm sm:grid">
                   <div>
                     <dt className="text-ink/50">Meyve kaynağı</dt>
                     <dd className="font-medium">{active.fruitSource}</dd>
@@ -113,7 +115,7 @@ export function ProductUniverse() {
 
           {/* Sağ: ürün şişesi — tüm görseller yığılı, aktif olan crossfade +
               hafif ölçek/dönüşle açılır (mount/unmount yok → akıcı, takılmasız) */}
-          <div className="relative order-1 h-[40vh] md:order-2 md:h-[76vh]">
+          <div className="relative order-1 h-[30vh] md:order-2 md:h-[76vh]">
             <div
               className="relative h-full w-full overflow-hidden rounded-[2rem]"
               style={{
