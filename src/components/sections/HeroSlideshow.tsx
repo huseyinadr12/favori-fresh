@@ -17,7 +17,7 @@ const slides = [
   { src: "/img/bahce.webp", alt: "Meyve bahçesi" },
 ];
 
-const INTERVAL = 15000; // 15 sn
+const INTERVAL = 22000; // ~22 sn — sakin geçiş
 
 export function HeroSlideshow() {
   const { prefersReducedMotion } = useMotion();
@@ -37,7 +37,7 @@ export function HeroSlideshow() {
       {slides.map((s, i) => (
         <div
           key={s.src}
-          className="absolute inset-0 transition-opacity duration-[2000ms] ease-fluid"
+          className="absolute inset-0 transition-opacity duration-[2600ms] ease-fluid"
           style={{ opacity: i === index ? 1 : 0 }}
         >
           <Image
@@ -48,19 +48,20 @@ export function HeroSlideshow() {
             sizes="100vw"
             className="object-cover"
             style={{
-              // Aktif kare yavaşça yakınlaşır (Ken Burns).
-              transform: i === index && !prefersReducedMotion ? "scale(1.08)" : "scale(1)",
+              // Aktif kare çok hafifçe yakınlaşır (sakin Ken Burns).
+              transform: i === index && !prefersReducedMotion ? "scale(1.05)" : "scale(1)",
               transition: prefersReducedMotion
                 ? undefined
-                : "transform 16s ease-out",
+                : "transform 24s ease-out",
             }}
           />
         </div>
       ))}
 
-      {/* Okunabilirlik için koyu degrade örtü */}
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-botanic/90 via-brand-botanic/70 to-brand-botanic/30" />
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-botanic/80 via-transparent to-brand-botanic/40" />
+      {/* Okunabilirlik için degrade örtü — metin sağda olduğundan sağ taraf
+          biraz daha koyu; yeşil örtü hafif tutuldu ki görseller daha görünür. */}
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-botanic/15 via-brand-botanic/30 to-brand-botanic/75" />
+      <div className="absolute inset-0 bg-gradient-to-t from-brand-botanic/45 via-transparent to-brand-botanic/20" />
     </div>
   );
 }

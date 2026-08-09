@@ -2,127 +2,93 @@
 
 import Image from "next/image";
 import { useSectionProgress } from "@/lib/useSectionProgress";
-import { useMotion } from "@/components/providers/MotionProvider";
 import { process } from "@/content/home";
-import { Reveal } from "@/components/ui/Reveal";
 import { AnimatedBackdrop } from "@/components/ui/AnimatedBackdrop";
+import { Reveal } from "@/components/ui/Reveal";
 
 /**
- * Meyveden servise üretim yolculuğu.
- * 3D uygunsa: yatay ilerleyen, scroll ile kontrol edilen bir "kamera hattı".
- * Değilse: erişilebilir dikey adım listesi.
- * Gerçek fabrika görselleri/videoları geldiğinde her adıma medya eklenebilir
- * (media alanı için hazır yapı).
+ * Meyveden servise üretim yolculuğu — dikey, görsel-zengin zaman çizelgesi.
+ * Ortadaki çizgi, bölüm kaydırıldıkça dolar; her adım sırayla iki yandan açılır.
+ * Statik export ve mobilde güvenilir çalışır (karmaşık pin/yatay hesap yok).
  */
 export function ProcessJourney() {
-  const { shouldRender3D } = useMotion();
   const { ref, progress } = useSectionProgress<HTMLDivElement>();
-
-  if (!shouldRender3D) return <ProcessStatic />;
-
   const steps = process.steps;
-  // Yatay kaydırma: rayı ilerleme oranında kaydır.
-  const travel = (steps.length - 1) * 78; // her adım ~78vw
-  const x = -progress * travel;
-  const activeIndex = Math.round(progress * (steps.length - 1));
 
   return (
     <section
       aria-label="Üretim yolculuğu"
       ref={ref}
-      className="relative bg-brand-botanic text-cream"
-      style={{ height: `${steps.length * 42}vh` }}
+      className="relative overflow-hidden bg-brand-botanic text-cream"
     >
-      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
-        <AnimatedBackdrop variant="dark" />
-        <div className="container-fluid relative z-10 mb-10">
-          <p className="kicker text-cream/60">
+      <AnimatedBackdrop variant="dark" />
+
+      <div className="container-fluid relative z-10 py-24 md:py-28">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="kicker justify-center text-cream/60">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-lemon" />
             {process.overline}
           </p>
-          <h2 className="mt-3 max-w-2xl font-display text-fluid-h2">
-            {process.title}
-          </h2>
+          <h2 className="mt-3 font-display text-fluid-h2">{process.title}</h2>
+          <p className="mt-4 text-cream/75">{process.body}</p>
         </div>
 
-        {/* İlerleme çizgisi */}
-        <div className="container-fluid relative z-10 mb-8">
-          <div className="h-0.5 w-full overflow-hidden rounded-full bg-cream/15">
-            <div
-              className="h-full rounded-full bg-accent-lemon transition-[width] duration-150"
-              style={{ width: `${progress * 100}%` }}
-            />
-          </div>
-        </div>
+        {/* Zaman çizelgesi */}
+        <ol className="relative mx-auto mt-16 max-w-4xl">
+          {/* Merkez çizgi (masaüstü ortada, mobilde solda) */}
+          <span
+            aria-hidden
+            className="absolute bottom-0 left-4 top-0 w-px bg-cream/15 md:left-1/2 md:-translate-x-1/2"
+          />
+          {/* Dolan ilerleme */}
+          <span
+            aria-hidden
+            className="absolute left-4 top-0 w-px bg-accent-lemon md:left-1/2 md:-translate-x-1/2"
+            style={{ height: `${Math.min(100, progress * 100)}%` }}
+          />
 
-        {/* Yatay ray */}
-        <div className="relative z-10 overflow-hidden">
-          <div
-            className="flex gap-[6vw] px-[11vw] transition-transform duration-150 ease-out"
-            style={{ transform: `translate3d(${x}vw, 0, 0)` }}
-          >
-            {steps.map((step, i) => (
-              <article
+          {steps.map((step, i) => {
+            const right = i % 2 === 1; // masaüstünde sırayla sağ/sol
+            return (
+              <li
                 key={step.title}
-                className="w-[72vw] shrink-0 sm:w-[52vw] md:w-[34vw] lg:w-[26vw]"
+                className="relative mb-10 pl-12 last:mb-0 md:mb-16 md:pl-0"
               >
-                <div
-                  className={`rounded-3xl border p-8 transition-all duration-500 ${
-                    i === activeIndex
-                      ? "border-accent-lemon/60 bg-cream/[0.08]"
-                      : "border-cream/15 bg-cream/[0.03]"
-                  }`}
-                >
-                  <span className="font-display text-5xl text-accent-lemon/80">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-4 font-display text-2xl">{step.title}</h3>
-                  <p className="mt-2 text-cream/70">{step.text}</p>
-                  <div className="relative mt-5 aspect-video overflow-hidden rounded-xl">
-                    <Image
-                      src={step.image}
-                      alt={step.title}
-                      fill
-                      sizes="(max-width: 768px) 72vw, 26vw"
-                      className="object-cover"
-                    />
-                  </div>
+                {/* Düğüm noktası */}
+                <span
+                  aria-hidden
+                  className="absolute left-4 top-2 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full border-2 border-brand-botanic bg-accent-lemon md:left-1/2"
+                />
+                <div className="md:grid md:grid-cols-2 md:items-center md:gap-10">
+                  {/* Görsel */}
+                  <Reveal
+                    className={`${right ? "md:order-2 md:pl-10" : "md:pr-10"}`}
+                  >
+                    <div className="relative aspect-video overflow-hidden rounded-2xl ring-1 ring-cream/10">
+                      <Image
+                        src={step.image}
+                        alt={step.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 40vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  </Reveal>
+                  {/* Metin */}
+                  <Reveal
+                    delay={0.05}
+                    className={`mt-4 md:mt-0 ${right ? "md:order-1 md:pr-10 md:text-right" : "md:pl-10"}`}
+                  >
+                    <span className="font-display text-4xl text-accent-lemon/80">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-2 font-display text-2xl">{step.title}</h3>
+                    <p className="mt-2 text-cream/70">{step.text}</p>
+                  </Reveal>
                 </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProcessStatic() {
-  return (
-    <section
-      aria-label="Üretim yolculuğu"
-      className="bg-brand-botanic text-cream"
-    >
-      <div className="container-fluid py-24">
-        <p className="kicker text-cream/60">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent-lemon" />
-          {process.overline}
-        </p>
-        <h2 className="mt-3 max-w-2xl font-display text-fluid-h2">
-          {process.title}
-        </h2>
-        <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {process.steps.map((step, i) => (
-            <Reveal as="li" key={step.title} delay={i * 0.04}>
-              <div className="h-full rounded-2xl border border-cream/15 bg-cream/[0.04] p-6">
-                <span className="font-display text-3xl text-accent-lemon/80">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-3 font-display text-lg">{step.title}</h3>
-                <p className="mt-1.5 text-sm text-cream/70">{step.text}</p>
-              </div>
-            </Reveal>
-          ))}
+              </li>
+            );
+          })}
         </ol>
       </div>
     </section>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { LeadForm } from "@/components/forms/LeadForm";
+import { LiquidButton } from "@/components/ui/LiquidButton";
 import { horeca } from "@/content/home";
 
 export const metadata: Metadata = {
@@ -57,6 +58,46 @@ export default function HorecaPage() {
               {a}
             </span>
           ))}
+        </div>
+      </section>
+
+      {/* Kurumsal iş birlikleri — belediyeler */}
+      <section className="border-t border-ink/10 bg-brand-green text-cream">
+        <div className="container-fluid grid gap-10 py-16 md:grid-cols-2 md:items-center">
+          <Reveal>
+            <p className="kicker text-cream/70">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent-lemon" />
+              Kurumsal iş birlikleri
+            </p>
+            <h2 className="mt-3 font-display text-fluid-h3">
+              Belediyelerin tercih ettiği doğal içecek
+            </h2>
+            <p className="mt-4 max-w-md text-cream/85">
+              HORECA sektöründeki kurumsal iş birliklerimizde{" "}
+              <strong className="font-semibold text-cream">
+                Bodrum Belediyesi
+              </strong>{" "}
+              başta olmak üzere pek çok belediyeye hizmet veriyor; kurumsal
+              etkinlik ve işletmelerde ilk gün tazeliğini standart kalitede
+              sunuyoruz.
+            </p>
+            <div className="mt-7">
+              <LiquidButton href="#teklif" variant="outline">
+                Kurumsal Teklif Al
+              </LiquidButton>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="relative aspect-[16/11] overflow-hidden rounded-3xl">
+              <Image
+                src="/img/mersin-cerceve.webp"
+                alt="Kurumsal sunumda Favori Fresh"
+                fill
+                sizes="(max-width: 768px) 100vw, 45vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 

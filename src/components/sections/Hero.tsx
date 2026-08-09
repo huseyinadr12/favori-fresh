@@ -3,7 +3,6 @@
 import { motion } from "motion/react";
 import { intro, hero } from "@/content/home";
 import { LiquidButton } from "@/components/ui/LiquidButton";
-import { HeaderVisual } from "@/components/three/HeaderVisual";
 import { HeroSlideshow } from "./HeroSlideshow";
 
 /**
@@ -19,11 +18,9 @@ export function Hero() {
       className="relative flex min-h-[100svh] items-center overflow-hidden bg-brand-botanic text-cream"
     >
       <HeroSlideshow />
-      {/* Sağ tarafta 3D süzülen meyve küreleri */}
-      <HeaderVisual />
 
-      <div className="container-fluid relative z-10 py-28">
-        <div className="max-w-2xl">
+      <div className="container-fluid relative z-10 flex justify-end py-28">
+        <div className="w-full max-w-xl md:mr-[2%] lg:mr-[6%]">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}

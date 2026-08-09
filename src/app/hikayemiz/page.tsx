@@ -78,26 +78,42 @@ export default function StoryPage() {
 
       {/* Üretim anlayışı */}
       <section className="border-t border-ink/10 bg-cream">
-        <div className="container-fluid py-16">
-          <p className="kicker text-brand-green">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-green" />
-            {production.overline}
-          </p>
-          <h2 className="mt-3 max-w-2xl font-display text-fluid-h3">
-            {production.title}
-          </h2>
-          <p className="mt-4 max-w-2xl text-ink/70">{production.intro}</p>
-          <dl className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {production.facts.map((f) => (
-              <div key={f.value} className="rounded-2xl border border-ink/10 p-5">
-                <dt className="font-display text-3xl text-brand-green">
-                  {f.value}
-                </dt>
-                <dd className="mt-1 text-sm text-ink/65">{f.label}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-6 max-w-2xl text-sm text-ink/60">{production.note}</p>
+        <div className="container-fluid grid gap-10 py-16 md:grid-cols-[1.5fr_1fr] md:items-center">
+          <div>
+            <p className="kicker text-brand-green">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-green" />
+              {production.overline}
+            </p>
+            <h2 className="mt-3 font-display text-fluid-h3">
+              {production.title}
+            </h2>
+            <p className="mt-4 text-ink/70">{production.intro}</p>
+            <dl className="mt-8 grid gap-4 sm:grid-cols-2">
+              {production.facts.map((f) => (
+                <div
+                  key={f.value}
+                  className="rounded-2xl border border-ink/10 p-5"
+                >
+                  <dt className="font-display text-3xl text-brand-green">
+                    {f.value}
+                  </dt>
+                  <dd className="mt-1 text-sm text-ink/65">{f.label}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-6 text-sm text-ink/60">{production.note}</p>
+          </div>
+          <Reveal delay={0.1}>
+            <div className="relative aspect-[3/4] overflow-hidden rounded-3xl">
+              <Image
+                src="/img/uretim-limon.webp"
+                alt="Yıkama hattında taze limonlar"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 

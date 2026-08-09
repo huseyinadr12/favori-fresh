@@ -91,14 +91,18 @@ export default function ProductionPage() {
           <h2 className="mt-3 max-w-xl font-display text-fluid-h3">
             Bekletmeden, doğal yöntemlerle
           </h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {/* Görseller yatay olduğu için 16:9 oranında gösterilir (kırpılmaz) */}
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { src: "/img/uretim-limon-2.webp", alt: "Yıkama hattında limonlar" },
-              { src: "/img/uretim-limonata.webp", alt: "Dolum ve etiketleme hattı" },
+              { src: "/img/uretim-limon-3.webp", alt: "Yıkama sonrası limonların taşınması" },
+              { src: "/img/uretim-limon-4.webp", alt: "Konveyör üzerinde seçilen limonlar" },
+              { src: "/img/uretim-limonata.webp", alt: "Etiketleme hattı" },
+              { src: "/img/uretim-limonata-2.webp", alt: "Dolum hattında şişeler" },
               { src: "/img/uretim-limonata-4.webp", alt: "Şişeleme hattında ürünler" },
             ].map((img, i) => (
-              <Reveal key={img.src} delay={i * 0.06}>
-                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
+              <Reveal key={img.src} delay={i * 0.05}>
+                <div className="relative aspect-video overflow-hidden rounded-2xl">
                   <Image
                     src={img.src}
                     alt={img.alt}
