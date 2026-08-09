@@ -64,7 +64,7 @@ export function PageTransition() {
               ease: [0.7, 0, 0.3, 1],
             }}
           >
-            <div className="absolute -inset-x-24 inset-y-0 -skew-x-6 overflow-hidden bg-gradient-to-r from-[#efa51e] via-accent-lemon to-[#f8df72]">
+            <div className="absolute -inset-x-24 inset-y-0 -skew-x-6 overflow-hidden bg-gradient-to-r from-accent-lemon via-[#f6d94b] to-[#f8df72]">
               <div
                 className="absolute inset-0 opacity-55"
                 style={{

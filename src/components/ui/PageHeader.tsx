@@ -51,23 +51,16 @@ export function PageHeader({
           sizes="58vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(var(--c-botanic))_0%,rgb(var(--c-botanic)/0.86)_30%,rgb(var(--c-botanic)/0.32)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(var(--c-botanic))_0%,rgb(var(--c-botanic)/0.78)_55%,rgb(var(--c-botanic)/0.5)_100%)]" />
       </motion.div>
 
-      {/* İki renk perdesi soldan sağa sırayla çekilerek başlığı açar. */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-20 origin-right bg-accent-orange"
-        initial={initial({ scaleX: 1 })}
-        animate={{ scaleX: 0 }}
-        transition={{ duration: 0.82, delay: 0.16, ease: EASE }}
-      />
+      {/* Tek sarı limonata perdesi soldan sağa çekilerek başlığı açar. */}
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[21] origin-right bg-accent-lemon"
         initial={initial({ scaleX: 1 })}
         animate={{ scaleX: 0 }}
-        transition={{ duration: 0.72, delay: 0.04, ease: EASE }}
+        transition={{ duration: 0.8, delay: 0.05, ease: EASE }}
       />
 
       <div className="container-fluid relative z-10 pb-16 pt-32 md:pb-20 md:pt-40">
