@@ -24,6 +24,16 @@ const DRIPS = [
   { size: 10, dx: 15, dy: 210, delay: 0.14 },
 ];
 
+// Limonata katmanına sıvı hissi veren, farklı boyutlardaki kabarcıklar.
+const BUBBLES = [
+  { left: "13%", top: "18%", size: 18, delay: 0.02 },
+  { left: "27%", top: "72%", size: 11, delay: 0.08 },
+  { left: "43%", top: "24%", size: 15, delay: 0.04 },
+  { left: "58%", top: "67%", size: 22, delay: 0.1 },
+  { left: "73%", top: "16%", size: 10, delay: 0.06 },
+  { left: "86%", top: "76%", size: 16, delay: 0.12 },
+];
+
 const DUR = 1.7;
 
 export function PageTransition() {
@@ -55,17 +65,56 @@ export function PageTransition() {
         >
           {/* Soldan sağa süpürüp sağa süzülen taşıyıcı */}
           <motion.div
-            className="absolute inset-0"
-            initial={{ x: "-105%" }}
-            animate={{ x: ["-105%", "0%", "0%", "105%"] }}
+            className="absolute inset-0 will-change-transform"
+            initial={{ x: "-112%" }}
+            animate={{ x: ["-112%", "0%", "0%", "112%"] }}
             transition={{
               duration: DUR,
-              times: [0, 0.18, 0.82, 1],
+              times: [0, 0.2, 0.78, 1],
               ease: [0.7, 0, 0.3, 1],
             }}
           >
-            {/* 1) Sarı limonata katmanı (tam ekran) */}
-            <div className="absolute -inset-x-20 inset-y-0 -skew-x-6 bg-gradient-to-r from-accent-orange via-accent-lemon to-[#f6e08c]" />
+            {/* 1) Soldan girip sağdan çıkan limonata katmanı */}
+            <div className="absolute -inset-x-24 inset-y-0 -skew-x-6 overflow-hidden bg-gradient-to-r from-[#efa51e] via-accent-lemon to-[#f8df72]">
+              <div
+                className="absolute inset-0 opacity-55"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle at 18% 28%, rgba(255,255,255,.55) 0 2px, transparent 3px), radial-gradient(circle at 64% 72%, rgba(255,255,255,.35) 0 3px, transparent 4px), linear-gradient(115deg, transparent 18%, rgba(255,255,255,.18) 40%, transparent 62%)",
+                  backgroundSize: "70px 70px, 110px 110px, 100% 100%",
+                }}
+              />
+
+              {BUBBLES.map((bubble, i) => (
+                <motion.span
+                  key={i}
+                  className="absolute rounded-full border border-white/55 bg-white/15 shadow-[inset_0_0_0_2px_rgba(255,255,255,0.08)]"
+                  style={{
+                    left: bubble.left,
+                    top: bubble.top,
+                    width: bubble.size,
+                    height: bubble.size,
+                  }}
+                  animate={{ y: [12, -18, 12], scale: [0.8, 1.08, 0.8] }}
+                  transition={{
+                    duration: 1.15,
+                    delay: bubble.delay,
+                    repeat: 1,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+
+              {/* Akış yönünü belirginleştiren sıvı parlaması */}
+              <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-r from-transparent via-white/20 to-white/35 blur-xl" />
+            </div>
+
+            {/* Sağdaki organik dalga kenarı limonatanın soldan sağa aktığını gösterir. */}
+            <motion.div
+              className="absolute -right-16 -top-[8%] h-[116%] w-28 rounded-[48%] bg-[#f8df72]/95 blur-[1px]"
+              animate={{ scaleY: [1.04, 0.96, 1.04], rotate: [-1.5, 1.5, -1.5] }}
+              transition={{ duration: 0.7, repeat: 2, ease: "easeInOut" }}
+            />
 
             {/* 2) SOLDA limonata şişesi + 3) kapak + 4) damlama */}
             <motion.div

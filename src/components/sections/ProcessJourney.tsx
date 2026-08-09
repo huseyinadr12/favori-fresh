@@ -76,14 +76,14 @@ export function ProcessJourney() {
                         />
                       </div>
                     ) : step.image.includes("bardak-glass") ? (
-                      // Bardak görseli portre — tam görünmesi için portre kart + contain
-                      <div className="relative mx-auto aspect-[3/4] max-w-[300px] overflow-hidden rounded-2xl bg-gradient-to-b from-[#26261c] to-[#14140f] ring-1 ring-cream/10">
+                      // Görselin doğal 9:16 oranını koru; farklı kart oranı siyah yan bant oluşturmasın.
+                      <div className="relative mx-auto aspect-[9/16] w-full max-w-[250px] overflow-hidden rounded-2xl bg-cream ring-1 ring-cream/10 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.65)]">
                         <Image
                           src={step.image}
                           alt={step.title}
                           fill
-                          sizes="(max-width: 768px) 80vw, 30vw"
-                          className="object-contain"
+                          sizes="(max-width: 768px) 72vw, 250px"
+                          className="object-cover"
                         />
                       </div>
                     ) : (
