@@ -54,15 +54,6 @@ export function PageHeader({
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(var(--c-botanic))_0%,rgb(var(--c-botanic)/0.78)_55%,rgb(var(--c-botanic)/0.5)_100%)]" />
       </motion.div>
 
-      {/* Tek sarı limonata perdesi soldan sağa çekilerek başlığı açar. */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-[21] origin-right bg-accent-lemon"
-        initial={initial({ scaleX: 1 })}
-        animate={{ scaleX: 0 }}
-        transition={{ duration: 0.8, delay: 0.05, ease: EASE }}
-      />
-
       <div className="container-fluid relative z-10 pb-16 pt-32 md:pb-20 md:pt-40">
         {overline && (
           <motion.p

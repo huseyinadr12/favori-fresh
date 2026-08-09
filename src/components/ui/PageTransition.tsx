@@ -8,9 +8,10 @@ import { useMotion } from "@/components/providers/MotionProvider";
 
 /**
  * Sayfa geçiş animasyonu — sade limonata geçişi:
- * 1) Sarı limonata katmanı soldan sağa süpürüp ekranı kaplar,
- * 2) limonata şişesi soldan sağa doğru ekranı boydan boya geçer,
- * 3) katman sağa süzülüp yeni sayfayı açar.
+ * 1) Sarı katman rota değişir değişmez ekranı ANINDA kaplar
+ *    (yeni sayfa asla erken görünmez; beyazlık/çift katman oluşmaz),
+ * 2) limonata şişesi soldan sağa ekranı boydan boya geçer,
+ * 3) katman sağa süzülür; yeni sayfa soldan sağa doğru açılır.
  * Yaklaşık 1.6 sn sürer; hareket azaltma tercihinde devre dışıdır.
  */
 
@@ -61,15 +62,14 @@ export function PageTransition() {
       aria-hidden
       className="pointer-events-none fixed inset-0 z-[95] overflow-hidden"
     >
-          {/* Soldan sağa süpürüp sağa süzülen sarı limonata katmanı */}
+          {/* Ekranı anında kaplayan, sonra sağa süzülen sarı limonata katmanı */}
           <motion.div
             className="absolute inset-0 will-change-transform"
-            initial={{ x: "-110%" }}
-            animate={{ x: ["-110%", "0%", "0%", "110%"] }}
+            initial={{ x: "0%", opacity: 0 }}
+            animate={{ x: ["0%", "0%", "112%"], opacity: 1 }}
             transition={{
-              duration: DUR,
-              times: [0, 0.2, 0.6, 1],
-              ease: [0.7, 0, 0.3, 1],
+              x: { duration: DUR, times: [0, 0.55, 1], ease: [0.65, 0, 0.35, 1] },
+              opacity: { duration: 0.09, ease: "linear" },
             }}
           >
             {/* Tertemiz sarı limonata katmanı — hiçbir beyaz/parlak öğe yok. */}
@@ -91,15 +91,15 @@ export function PageTransition() {
             style={{ translateX: "-50%", translateY: "-50%" }}
             initial={{ left: "-15%", opacity: 0, rotate: -4 }}
             animate={{
-              left: ["-15%", "115%"],
-              opacity: [0, 1, 1, 0],
+              left: ["-15%", "115%", "115%"],
+              opacity: [0, 1, 1, 0, 0],
               rotate: [-4, 3],
             }}
             transition={{
               duration: DUR,
-              left: { duration: DUR, ease: [0.45, 0, 0.55, 1] },
+              left: { duration: DUR, times: [0, 0.85, 1], ease: [0.45, 0, 0.55, 1] },
               rotate: { duration: DUR, ease: "linear" },
-              opacity: { duration: DUR, times: [0, 0.16, 0.82, 1] },
+              opacity: { duration: DUR, times: [0, 0.1, 0.72, 0.85, 1] },
             }}
           >
             <Image
