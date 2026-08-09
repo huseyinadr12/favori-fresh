@@ -104,14 +104,6 @@ export function PageHeader({
             {description}
           </motion.p>
         )}
-
-        <motion.span
-          aria-hidden
-          className="mt-7 block h-px bg-gradient-to-r from-accent-lemon via-accent-orange to-transparent"
-          initial={initial({ scaleX: 0, transformOrigin: "left" })}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.9, delay: 0.6, ease: EASE }}
-        />
       </div>
     </header>
   );
