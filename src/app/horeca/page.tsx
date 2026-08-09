@@ -61,6 +61,22 @@ export default function HorecaPage() {
         </div>
       </section>
 
+      {/* Ürün ailesi afişi */}
+      <section className="container-fluid pb-4">
+        <Reveal>
+          <div className="overflow-hidden rounded-3xl border border-ink/10 shadow-sm">
+            <Image
+              src="/img/urun-ailesi.webp"
+              alt="Favori Fresh doğal katkısız içecek ailesi"
+              width={1492}
+              height={1054}
+              sizes="100vw"
+              className="h-auto w-full"
+            />
+          </div>
+        </Reveal>
+      </section>
+
       {/* Kurumsal iş birlikleri — belediyeler */}
       <section className="border-t border-ink/10 bg-brand-green text-cream">
         <div className="container-fluid grid gap-10 py-16 md:grid-cols-2 md:items-center">

@@ -10,12 +10,12 @@ import { useMotion } from "@/components/providers/MotionProvider";
  * yakınlaşmasıyla değişir. Hareket azaltmada tek kare sabit kalır.
  */
 const slides = [
+  { src: "/img/bahce-genis.webp", alt: "Mavi gökyüzü altında geniş narenciye bahçesi" },
   { src: "/img/bahce-limon.webp", alt: "Dalında olgunlaşmış Lamas limonları" },
+  { src: "/img/bahce-portakal-hd.webp", alt: "Güneş altında portakal ağaçları" },
   { src: "/img/bahce-mandalina.webp", alt: "Muğla Bodrum mandalina bahçesi" },
-  { src: "/img/bahce-portakal.webp", alt: "Güneş altında portakal bahçesi" },
   { src: "/img/lamas-limon.webp", alt: "Yakın planda taze limonlar" },
   { src: "/img/bahce-limon-2.webp", alt: "Limon bahçesi" },
-  { src: "/img/bahce.webp", alt: "Meyve bahçesi" },
 ];
 
 const INTERVAL = 22000; // ~22 sn — sakin geçiş
