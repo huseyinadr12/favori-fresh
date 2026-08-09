@@ -120,8 +120,8 @@ export function PageTransition() {
             <motion.div
               className="absolute left-[7%] top-1/2 h-[44vh] max-h-[380px] w-[22vh] max-w-[195px] -translate-y-1/2"
               initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: [0, 0, 1, 1, 0], x: [-30, -30, 0, 0, 0] }}
-              transition={{ duration: DUR, times: [0, 0.2, 0.33, 0.55, 0.66], ease: "easeOut" }}
+              animate={{ opacity: [0, 0, 1, 1], x: [-30, -30, 0, 0] }}
+              transition={{ duration: DUR, times: [0, 0.2, 0.42, 1], ease: "easeOut" }}
             >
               <Image
                 src="/img/urun-limonata.webp"
@@ -141,7 +141,7 @@ export function PageTransition() {
                   x: [0, 0, 0, 40, 92],
                   rotate: [0, 0, 0, 150, 300],
                 }}
-                transition={{ duration: DUR, times: [0, 0.34, 0.38, 0.5, 0.6], ease: "easeOut" }}
+                transition={{ duration: DUR, times: [0, 0.42, 0.46, 0.58, 0.68], ease: "easeOut" }}
               />
 
               {/* Damlayan limonata (şişe ağzından süzülür) */}
@@ -157,7 +157,7 @@ export function PageTransition() {
                     opacity: [0, 1, 0],
                     scale: [0.5, 1, 0.7],
                   }}
-                  transition={{ duration: 0.5, delay: 0.42 + d.delay, ease: "easeIn" }}
+                  transition={{ duration: 0.5, delay: 0.55 + d.delay, ease: "easeIn" }}
                 />
               ))}
             </motion.div>
@@ -176,7 +176,7 @@ export function PageTransition() {
               }}
               transition={{
                 duration: DUR,
-                times: [0, 0.58, 0.78],
+                times: [0, 0.2, 0.42],
                 ease: [0.65, 0, 0.35, 1],
               }}
             >
