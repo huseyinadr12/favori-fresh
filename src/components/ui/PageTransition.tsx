@@ -34,7 +34,7 @@ const BUBBLES = [
   { left: "86%", top: "76%", size: 16, delay: 0.12 },
 ];
 
-const DUR = 1.7;
+const DUR = 1.1;
 
 export function PageTransition() {
   const pathname = usePathname();
@@ -157,7 +157,7 @@ export function PageTransition() {
                     opacity: [0, 1, 0],
                     scale: [0.5, 1, 0.7],
                   }}
-                  transition={{ duration: 0.8, delay: 0.7 + d.delay, ease: "easeIn" }}
+                  transition={{ duration: 0.5, delay: 0.42 + d.delay, ease: "easeIn" }}
                 />
               ))}
             </motion.div>
