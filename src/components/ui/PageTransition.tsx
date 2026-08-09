@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { useMotion } from "@/components/providers/MotionProvider";
 
 /**
@@ -30,6 +30,8 @@ export function PageTransition() {
   const pathname = usePathname();
   const { prefersReducedMotion } = useMotion();
   const [active, setActive] = useState(false);
+  // Her geçiş için artan kimlik: yeni mount ile animasyon hep baştan oynar.
+  const [runId, setRunId] = useState(0);
   const first = useRef(true);
 
   useEffect(() => {
@@ -38,21 +40,37 @@ export function PageTransition() {
       return;
     }
     if (prefersReducedMotion) return;
+
+    setRunId((n) => n + 1);
     setActive(true);
-    const t = setTimeout(() => setActive(false), DUR * 1000 + 120);
-    return () => clearTimeout(t);
+
+    // Garantili sonlanma: zamanlayıcı, sekme arka planda olsa bile tetiklenir.
+    const t = setTimeout(() => setActive(false), DUR * 1000 + 200);
+
+    // Sekme gizlenirse (rAF donar) geçişi hemen sonlandır; asılı katman kalmasın.
+    const onHide = () => {
+      if (document.visibilityState === "hidden") {
+        clearTimeout(t);
+        setActive(false);
+      }
+    };
+    document.addEventListener("visibilitychange", onHide);
+
+    return () => {
+      clearTimeout(t);
+      document.removeEventListener("visibilitychange", onHide);
+    };
   }, [pathname, prefersReducedMotion]);
 
+  // AnimatePresence/exit yok: active=false olunca anında unmount → katman asla asılı kalmaz.
+  if (!active) return null;
+
   return (
-    <AnimatePresence>
-      {active && (
-        <motion.div
-          key="page-transition"
-          aria-hidden
-          className="pointer-events-none fixed inset-0 z-[95] overflow-hidden"
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.12 }}
-        >
+    <motion.div
+      key={runId}
+      aria-hidden
+      className="pointer-events-none fixed inset-0 z-[95] overflow-hidden"
+    >
           {/* Soldan sağa süpürüp sağa süzülen sarı limonata katmanı */}
           <motion.div
             className="absolute inset-0 will-change-transform"
@@ -131,8 +149,6 @@ export function PageTransition() {
               className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
             />
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    </motion.div>
   );
 }
